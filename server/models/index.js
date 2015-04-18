@@ -6,7 +6,6 @@ module.exports = {
     get: function (cb) {
       db.query("SELECT * FROM Messages", function (err, rows){
         if (err) throw err;
-        console.log(rows);
         cb(rows);
       });
     }, 
@@ -19,7 +18,6 @@ module.exports = {
       var data = {text: text, createdAt: ca, roomname: rm, username: user};
       var sql = mysql.format('INSERT INTO Messages SET ?', data);
 
-      console.log(sql);
 
       db.query(sql, function (err, results) {
           if (err) throw err;
@@ -35,7 +33,6 @@ module.exports = {
     get: function (cb) {
       db.query("SELECT * FROM Users", function (err, rows) {
         if (err) throw err;
-        console.log(rows);
         cb(rows);
       });
     },
@@ -43,7 +40,6 @@ module.exports = {
       var data = {username: user.username};
       var sql = mysql.format('INSERT INTO Users SET ?', data);
 
-      console.log(sql);
 
       db.query(sql, function (err, results) {
         if (err) throw err;

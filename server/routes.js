@@ -5,8 +5,11 @@ for (var route in controllers) {
   router.route("/" + route)
     .get(controllers[route].get) // controllers[route].get is a function executed when a get request is made to "/route" (/messages or /users)
           // controllers[messages].get is executed when a get request is made to "/messages"
-    .post(controllers[route].post);
+    .post(controllers[route].post)
+    .options(controllers[route].options)
 }
+
+router.route('*').options(controllers['messages'].options);
 
 module.exports = router;
 

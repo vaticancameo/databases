@@ -128,6 +128,7 @@ window.app.send = function(message) {
       window.app.fetch(message.roomname);
     }, 
     error: function(e, type) {
+      console.log('send error ' + JSON.stringify(e));
     }
   });
 };
