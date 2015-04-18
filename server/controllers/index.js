@@ -18,6 +18,12 @@ module.exports = {
     }, // a function which handles a get request for all messages
     
     post: function (req, res) {
+      console.log(req.body);
+      models.messages.post(req.body, function () {
+        res.writeHead(201);
+        res.end();
+      });
+      /*
       var data = '';
       req.on('data', function(chunk) {
         data += chunk;
@@ -30,14 +36,40 @@ module.exports = {
         });
         
       });
-      
+      */
     } // a function which handles posting a message to the database
   },
 
   users: {
     // Ditto as above
-    get: function (req, res) {},
-    post: function (req, res) {}
+    get: function (req, res) {
+      models.users.get(function(rows) {
+        var status = 200;
+        res.writeHead(status, headers);
+        res.end(JSON.stringify(rows));
+      });
+    },
+    post: function (req, res) {
+      console.log(req.body);
+      models.users.post(req.body, function () {
+        res.writeHead(201);
+        res.end();
+      });
+      /*
+      var data = '';
+      req.on('data', function (chunk) {
+        data += chunk;
+      });
+      req.on('end', function () {
+        console.log(data);
+        data = JSON.parse(data);
+        models.users.post(data, function () {
+          res.writeHead(201);
+          res.end();
+        });
+      });
+*/
+    }
   }
 };
 
